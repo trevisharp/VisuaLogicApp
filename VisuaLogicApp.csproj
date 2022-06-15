@@ -1,29 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-
-    <PackageType>Template</PackageType>
-    <PackageVersion>1.0</PackageVersion>
-    <PackageId>visuaLogic</PackageId>
-    <Authors>Leonardo Trevisan</Authors>
-    <Company>Trevisharp</Company>
-    <Description>Template for Visual Logic Apps.</Description>
-
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <OutputType>WinExe</OutputType>
-    <UseWindowsForms>true</UseWindowsForms>
-
-    <IncludeContentInPack>true</IncludeContentInPack>
-    <IncludeBuildOutput>false</IncludeBuildOutput>
-    <ContentTargetFolders>content</ContentTargetFolders>
-    <NoWarn>$(NoWarn);NU5128</NoWarn>
-    <NoDefaultExcludes>true</NoDefaultExcludes>
-
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="VisualLogic" Version="1.2.0" />
-    <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
-  </ItemGroup>
 
 </Project>
