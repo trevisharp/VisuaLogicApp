@@ -11,7 +11,10 @@ char[] buffer = new char[50];
 string str = string.Empty;
 
 if (args.Length > 0)
-    keepruning = recivecommand(args);
+{
+    recivecommand(args);
+    return;
+}
 
 while (keepruning)
 {
@@ -52,6 +55,14 @@ bool recivecommand(string[] command)
             return false;
         case "new":
             string name = "";
+            if (command.Length > 1)
+                name = command[1];
+            else
+            {
+                var path = Directory.GetCurrentDirectory();
+                var dir = new DirectoryInfo(path);
+                name = dir.Name;
+            }
             newprj(name);
         break;
         default:
@@ -112,19 +123,22 @@ void createprogram()
     writter.WriteLine("using VisualLogic;");
     writter.WriteLine("using VisualLogic.Elements;");
     writter.WriteLine("");
-    writter.WriteLine("void logic(vRandomArray arr)");
+    writter.WriteLine("LogicApp.Run(25); // 1000 / 25 = 40 pfs");
+    writter.WriteLine("");
+    writter.WriteLine("void logic(vRandomArray arr) // bubble sort implementation");
     writter.WriteLine("{");
     writter.WriteLine("\tbool sorted = false;");
     writter.WriteLine("\twhile(!sorted)");
     writter.WriteLine("\t{");
     writter.WriteLine("\t\tsorted = true;");
-    writter.WriteLine("\t\tfor (int i = 0; i < arr.Length; i++)");
+    writter.WriteLine("\t\tfor (int i = 0; i < arr.Length - 1; i++)");
     writter.WriteLine("\t\t{");
     writter.WriteLine("\t\t\tif (arr[i] < arr[i + 1])");
     writter.WriteLine("\t\t\t{");
     writter.WriteLine("\t\t\t\tvar temp = arr[i];");
-    writter.WriteLine("\t\t\t\tvar arr[i] = arr[i + 1];");
-    writter.WriteLine("\t\t\t\tvar arr[i + 1] = temp;");
+    writter.WriteLine("\t\t\t\tarr[i] = arr[i + 1];");
+    writter.WriteLine("\t\t\t\tarr[i + 1] = temp;");
+    writter.WriteLine("\t\t\t\tsorted = false;");
     writter.WriteLine("\t\t\t}");
     writter.WriteLine("\t\t}");
     writter.WriteLine("\t}");
@@ -148,4 +162,5 @@ void createscproj(string name)
     writter.WriteLine("\t</ItemGroup>");
     writter.WriteLine();
     writter.WriteLine("</Project>");
+    writter.Close();
 }
