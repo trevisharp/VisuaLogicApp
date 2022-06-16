@@ -65,6 +65,9 @@ bool recivecommand(string[] command)
             }
             newprj(name);
         break;
+        case "list":
+            list();
+            break;
         default:
             error($"'{command[0]}' not is a valid command.");
         break;
@@ -80,6 +83,7 @@ void show(string s)
         switch (word)
         {
             case "new":
+            case "list":
             case "exit":
                 printcolor(word, ConsoleColor.Green);
                 break;
@@ -115,6 +119,23 @@ void newprj(string name)
 {
     createprogram();
     createscproj(name);
+}
+
+void list()
+{
+    var commands = new string[]
+    {
+        "new [name]",
+        "list",
+        "exit"
+    };
+    WriteLine("Command List:");
+    foreach (var command in commands)
+    {
+        Write("- ");
+        printcolor(command, ConsoleColor.Green);
+        WriteLine();
+    }
 }
 
 void createprogram()
